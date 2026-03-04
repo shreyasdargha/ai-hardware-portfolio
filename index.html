@@ -17,6 +17,8 @@
   *{box-sizing:border-box;margin:0;padding:0}
   body{font-family:'JetBrains Mono',monospace;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden}
   body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(8,145,178,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(8,145,178,.05) 1px,transparent 1px);background-size:40px 40px;pointer-events:none;z-index:0}
+
+  /* NAV */
   nav{position:sticky;top:0;z-index:100;background:rgba(240,244,250,.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:.85rem 2.5rem}
   .nav-id{font-family:'Syne',sans-serif;font-size:.88rem;font-weight:700;letter-spacing:.08em;color:var(--teal);display:flex;align-items:center;gap:.5rem}
   .nav-id::before{content:'';width:7px;height:7px;border-radius:50%;background:var(--teal);animation:pulse 2s ease-in-out infinite}
@@ -25,6 +27,8 @@
   .nav-tab{font-family:'JetBrains Mono',monospace;font-size:.72rem;padding:.36rem .85rem;background:none;border:1px solid transparent;color:var(--muted);cursor:pointer;border-radius:4px;letter-spacing:.04em;transition:all .18s}
   .nav-tab:hover{color:var(--teal);border-color:var(--border2);background:var(--panel)}
   .nav-tab.active{color:var(--teal);border-color:var(--teal);background:var(--tealL)}
+
+  /* HERO */
   .hero{position:relative;z-index:1;padding:3rem 2.5rem 2rem;border-bottom:1px solid var(--border);display:grid;grid-template-columns:1fr auto;gap:2rem;align-items:end;background:var(--panel);box-shadow:0 1px 6px rgba(0,0,0,.04)}
   .hero-tag{font-size:.65rem;letter-spacing:.18em;text-transform:uppercase;color:var(--teal);margin-bottom:.7rem;display:flex;align-items:center;gap:.5rem}
   .hero-tag::before{content:'//';color:var(--muted)}
@@ -35,6 +39,8 @@
   .hero-stats{display:flex;flex-direction:column;gap:.5rem;align-items:flex-end}
   .stat-chip{font-size:.68rem;padding:.33rem .88rem;border:1px solid var(--border2);border-radius:4px;color:var(--text);background:var(--panel2);white-space:nowrap}
   .stat-chip .val{color:var(--teal);font-weight:600}
+
+  /* PIPELINE */
   .pipeline-wrap{position:relative;z-index:1;padding:1.4rem 2.5rem;border-bottom:1px solid var(--border);overflow-x:auto;background:var(--panel)}
   .pipeline-label{font-size:.62rem;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin-bottom:.85rem}
   .pipeline{display:flex;align-items:center;min-width:max-content}
@@ -47,23 +53,31 @@
   .pipe-icon{font-size:1rem}
   .pipe-name{font-size:.58rem;letter-spacing:.05em;color:var(--text);white-space:nowrap}
   .pipe-tool{font-size:.52rem;color:var(--orange)}
+
+  /* SECTIONS */
   .section{display:none;padding:2.5rem;position:relative;z-index:1;animation:fadeUp .22s ease}
   .section.active{display:block}
   @keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
   .sec-header{display:flex;align-items:baseline;gap:1rem;margin-bottom:2rem;padding-bottom:.85rem;border-bottom:1px solid var(--border)}
   .sec-title{font-family:'Syne',sans-serif;font-size:1.35rem;font-weight:700;color:var(--ink)}
   .sec-sub{font-size:.68rem;color:var(--muted)}
+
+  /* SKILLS */
   .skill-domains{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.4rem}
   .domain-block{background:var(--panel);border:1px solid var(--border);border-radius:8px;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,.04)}
   .domain-header{padding:.7rem 1.1rem;border-bottom:1px solid var(--border);background:var(--panel2);display:flex;align-items:center;gap:.55rem}
   .d-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
   .d-name{font-size:.68rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--ink)}
   .domain-skills{padding:.75rem 1.1rem;display:flex;flex-direction:column;gap:.65rem}
-  .sk{display:flex;align-items:center;gap:.7rem}
+  .sk{display:flex;align-items:center;gap:.7rem;position:relative}
   .sk-name{font-size:.72rem;color:var(--text);min-width:185px;flex-shrink:0}
-  .sk-bar{flex:1;height:4px;background:var(--panel2);border-radius:10px;overflow:hidden;border:1px solid var(--border)}
-  .sk-fill{height:100%;border-radius:10px;width:0;transition:width 1s cubic-bezier(.4,0,.2,1)}
+  .sk-bar{flex:1;height:4px;background:var(--panel2);border-radius:10px;overflow:hidden;border:1px solid var(--border);position:relative;cursor:pointer}
+  /* clicking the bar reveals a range slider layered on top */
+  .sk-bar input[type=range]{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:pointer;margin:0;padding:0}
+  .sk-fill{height:100%;border-radius:10px;width:0;transition:width .3s cubic-bezier(.4,0,.2,1);pointer-events:none}
   .sk-pct{font-size:.62rem;color:var(--muted);min-width:34px;text-align:right}
+
+  /* PROJECTS */
   .proj-list{display:flex;flex-direction:column;gap:1.1rem}
   .proj-card{background:var(--panel);border:1px solid var(--border);border-radius:8px;padding:1.3rem 1.5rem;display:grid;grid-template-columns:auto 1fr auto;gap:1.1rem;align-items:start;transition:box-shadow .2s,border-color .2s;box-shadow:0 1px 4px rgba(0,0,0,.04)}
   .proj-card:hover{box-shadow:0 4px 16px rgba(0,0,0,.08);border-color:var(--border2)}
@@ -79,36 +93,77 @@
   .proj-desc{font-size:.74rem;line-height:1.75;color:var(--muted2)}
   .proj-tools{margin-top:.55rem;display:flex;gap:.35rem;flex-wrap:wrap}
   .tbadge{font-size:.58rem;padding:.12rem .45rem;border:1px solid var(--border);border-radius:3px;color:var(--muted2);background:var(--panel2)}
-  .proj-status{display:flex;flex-direction:column;align-items:flex-end}
+  .proj-status{display:flex;flex-direction:column;align-items:flex-end;gap:.4rem}
   .sdot{font-size:.58rem;letter-spacing:.07em;text-transform:uppercase;display:flex;align-items:center;gap:.3rem;font-weight:600}
   .sdot::before{content:'';width:5px;height:5px;border-radius:50%;flex-shrink:0}
   .sdot.wip::before{background:var(--orange)}.sdot.wip{color:var(--orange)}
   .sdot.done::before{background:var(--green)}.sdot.done{color:var(--green)}
   .sdot.plan::before{background:var(--muted)}.sdot.plan{color:var(--muted)}
+  /* project status cycle button */
+  .status-btn{font-size:.55rem;padding:.15rem .45rem;border:1px solid var(--border2);border-radius:3px;background:var(--panel2);color:var(--muted2);cursor:pointer;letter-spacing:.05em;transition:all .15s}
+  .status-btn:hover{border-color:var(--teal);color:var(--teal)}
+
+  /* GOALS */
   .goals-wrap{display:grid;grid-template-columns:1fr 1fr;gap:2rem}
   .gcol-title{font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:.9rem}
-  .goal-row{display:flex;gap:.7rem;align-items:flex-start;padding:.75rem .9rem;background:var(--panel);border:1px solid var(--border);border-radius:6px;margin-bottom:.55rem;cursor:pointer;transition:all .18s;box-shadow:0 1px 3px rgba(0,0,0,.04)}
+  .goal-row{display:flex;gap:.7rem;align-items:flex-start;padding:.75rem .9rem;background:var(--panel);border:1px solid var(--border);border-radius:6px;margin-bottom:.55rem;transition:all .18s;box-shadow:0 1px 3px rgba(0,0,0,.04);position:relative}
   .goal-row:hover{border-color:var(--teal);box-shadow:0 2px 8px rgba(8,145,178,.12)}
   .goal-row.done-g{opacity:.42}
   .goal-row.done-g .g-txt{text-decoration:line-through}
-  .g-box{width:14px;height:14px;border:1.5px solid var(--border2);border-radius:3px;flex-shrink:0;margin-top:2px;display:flex;align-items:center;justify-content:center;font-size:.52rem;transition:all .18s}
+  .g-box{width:14px;height:14px;border:1.5px solid var(--border2);border-radius:3px;flex-shrink:0;margin-top:2px;display:flex;align-items:center;justify-content:center;font-size:.52rem;transition:all .18s;cursor:pointer}
   .goal-row.done-g .g-box{background:var(--teal);border-color:var(--teal);color:#fff}
   .g-box::after{content:'✓';display:none}
   .goal-row.done-g .g-box::after{display:block}
-  .g-txt{font-size:.74rem;line-height:1.5;color:var(--text)}
+  .g-txt{font-size:.74rem;line-height:1.5;color:var(--text);flex:1}
   .g-dt{font-size:.62rem;color:var(--muted);margin-top:.15rem}
+  .g-del{position:absolute;right:.6rem;top:.6rem;font-size:.65rem;color:var(--muted);cursor:pointer;opacity:0;transition:opacity .15s;background:none;border:none;padding:0 .2rem}
+  .goal-row:hover .g-del{opacity:1}
+  .g-del:hover{color:#ef4444}
+
+  /* ADD GOAL */
+  .add-goal-row{display:flex;gap:.5rem;margin-top:.5rem}
+  .add-goal-inp{flex:1;font-family:'JetBrains Mono',monospace;font-size:.72rem;padding:.5rem .7rem;border:1px dashed var(--border2);border-radius:5px;background:var(--panel);color:var(--ink);outline:none}
+  .add-goal-inp:focus{border-color:var(--teal);border-style:solid}
+  .add-goal-inp::placeholder{color:var(--muted)}
+  .add-goal-date{width:90px;font-family:'JetBrains Mono',monospace;font-size:.72rem;padding:.5rem .5rem;border:1px dashed var(--border2);border-radius:5px;background:var(--panel);color:var(--ink);outline:none}
+  .add-goal-date:focus{border-color:var(--teal);border-style:solid}
+  .add-btn{font-family:'JetBrains Mono',monospace;font-size:.68rem;padding:.5rem .8rem;border:1px solid var(--teal);border-radius:5px;background:var(--tealL);color:var(--teal);cursor:pointer;font-weight:600;transition:all .15s;white-space:nowrap}
+  .add-btn:hover{background:var(--teal);color:#fff}
+
+  /* REFLECTION */
   .reflect-box{margin-top:1.4rem;background:var(--panel);border:1px solid var(--border);border-radius:8px;padding:1.2rem 1.4rem;box-shadow:0 1px 4px rgba(0,0,0,.04)}
   .reflect-lbl{font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);margin-bottom:.5rem;font-weight:600}
   .reflect-txt{font-size:.78rem;line-height:1.9;color:var(--text);outline:none;min-height:75px;width:100%}
   .reflect-txt:focus{color:var(--ink)}
+
+  /* CERTS */
   .certs-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1rem}
   .cert-card{background:var(--panel);border:1px solid var(--border);border-radius:8px;padding:1.1rem;display:flex;gap:.9rem;align-items:flex-start;transition:box-shadow .18s,border-color .18s;box-shadow:0 1px 4px rgba(0,0,0,.04)}
   .cert-card:hover{box-shadow:0 4px 12px rgba(0,0,0,.08);border-color:var(--border2)}
   .cert-ico{font-size:1.3rem;width:40px;height:40px;display:flex;align-items:center;justify-content:center;background:var(--panel2);border-radius:6px;flex-shrink:0;border:1px solid var(--border)}
   .cert-name{font-size:.8rem;font-weight:600;color:var(--ink);margin-bottom:.18rem;line-height:1.3}
-  .cert-issuer{font-size:.68rem;color:var(--muted2);margin-bottom:.25rem}
-  .cert-date{font-size:.62rem;color:var(--teal);letter-spacing:.07em;font-weight:600}
-  @media(max-width:700px){.hero{grid-template-columns:1fr;padding:2rem 1.5rem}nav{padding:.8rem 1.2rem}.section{padding:1.5rem}.goals-wrap{grid-template-columns:1fr}.proj-card{grid-template-columns:1fr}.proj-num{display:none}.pipeline-wrap{padding:1rem 1.5rem}}
+  .cert-issuer{font-size:.68rem;color:var(--muted2);margin-bottom:.4rem}
+  /* cert status toggle */
+  .cert-status-row{display:flex;gap:.35rem;flex-wrap:wrap}
+  .cst-btn{font-size:.6rem;padding:.18rem .55rem;border-radius:20px;border:1px solid var(--border2);background:var(--panel2);color:var(--muted2);cursor:pointer;font-family:'JetBrains Mono',monospace;font-weight:600;letter-spacing:.04em;transition:all .15s}
+  .cst-btn:hover{border-color:var(--teal)}
+  .cst-btn.active-planned{background:var(--panel2);color:var(--muted2);border-color:var(--border2)}
+  .cst-btn.active-progress{background:#fff7ed;color:var(--orange);border-color:rgba(234,88,12,.4)}
+  .cst-btn.active-completed{background:var(--greenL);color:var(--green);border-color:rgba(21,128,61,.4)}
+
+  /* EDIT HINT */
+  .edit-hint{font-size:.6rem;color:var(--muted);letter-spacing:.06em;display:flex;align-items:center;gap:.3rem;margin-top:.3rem}
+  .edit-hint::before{content:'✎'}
+
+  @media(max-width:700px){
+    .hero{grid-template-columns:1fr;padding:2rem 1.5rem}
+    nav{padding:.8rem 1.2rem}
+    .section{padding:1.5rem}
+    .goals-wrap{grid-template-columns:1fr}
+    .proj-card{grid-template-columns:1fr}
+    .proj-num{display:none}
+    .pipeline-wrap{padding:1rem 1.5rem}
+  }
 </style>
 </head>
 <body>
@@ -128,59 +183,101 @@
     <div class="hero-tag">Aspiring AI Hardware Engineer</div>
     <h1 class="hero-name">From <span class="hl">Algorithm</span><br>to <span class="hl2">Silicon</span></h1>
     <p class="hero-desc" contenteditable="true">Building MobileNet accelerators end-to-end — from C++ HLS through RTL design, synthesis, place-and-route, and board verification on the Zynq-7000. Learning the complete ASIC flow toward physical implementation and tapeout.</p>
+    <div class="edit-hint">click any text to edit</div>
   </div>
   <div class="hero-stats">
-    <div class="stat-chip">Flow Stage: <span class="val">HLS → Zynq Verify</span></div>
-    <div class="stat-chip">Target: <span class="val">MobileNet ASIC</span></div>
-    <div class="stat-chip">Platform: <span class="val">Xilinx Zynq-7000</span></div>
-    <div class="stat-chip">PDK Study: <span class="val">SkyWater 130nm</span></div>
+    <div class="stat-chip">Flow Stage: <span class="val" contenteditable="true">HLS → Zynq Verify</span></div>
+    <div class="stat-chip">Target: <span class="val" contenteditable="true">MobileNet ASIC</span></div>
+    <div class="stat-chip">Platform: <span class="val" contenteditable="true">Xilinx Zynq-7000</span></div>
+    <div class="stat-chip">PDK Study: <span class="val" contenteditable="true">SkyWater 130nm</span></div>
   </div>
 </div>
 
 <div class="pipeline-wrap">
-  <div class="pipeline-label">// full asic design flow — click stages to track your progress</div>
-  <div class="pipeline">
-    <div class="pipe-step lit" onclick="this.classList.toggle('lit')"><span class="pipe-num">01</span><span class="pipe-icon">🧠</span><span class="pipe-name">Algorithm</span><span class="pipe-tool">Python/TF</span></div><span class="pipe-arrow">▶</span>
-    <div class="pipe-step lit" onclick="this.classList.toggle('lit')"><span class="pipe-num">02</span><span class="pipe-icon">⚙️</span><span class="pipe-name">HLS</span><span class="pipe-tool">Vivado HLS</span></div><span class="pipe-arrow">▶</span>
-    <div class="pipe-step lit" onclick="this.classList.toggle('lit')"><span class="pipe-num">03</span><span class="pipe-icon">📐</span><span class="pipe-name">RTL Design</span><span class="pipe-tool">Verilog/SV</span></div><span class="pipe-arrow">▶</span>
-    <div class="pipe-step lit" onclick="this.classList.toggle('lit')"><span class="pipe-num">04</span><span class="pipe-icon">🔬</span><span class="pipe-name">Simulation</span><span class="pipe-tool">VCS/ModelSim</span></div><span class="pipe-arrow">▶</span>
-    <div class="pipe-step lit" onclick="this.classList.toggle('lit')"><span class="pipe-num">05</span><span class="pipe-icon">🧩</span><span class="pipe-name">Synthesis</span><span class="pipe-tool">DC / Vivado</span></div><span class="pipe-arrow">▶</span>
-    <div class="pipe-step lit" onclick="this.classList.toggle('lit')"><span class="pipe-num">06</span><span class="pipe-icon">⏱️</span><span class="pipe-name">STA</span><span class="pipe-tool">PrimeTime</span></div><span class="pipe-arrow">▶</span>
-    <div class="pipe-step lit" onclick="this.classList.toggle('lit')"><span class="pipe-num">07</span><span class="pipe-icon">🗺️</span><span class="pipe-name">P&amp;R</span><span class="pipe-tool">Vivado/ICC2</span></div><span class="pipe-arrow">▶</span>
-    <div class="pipe-step lit" onclick="this.classList.toggle('lit')"><span class="pipe-num">08</span><span class="pipe-icon">💡</span><span class="pipe-name">Power Anal.</span><span class="pipe-tool">PrimeTime PX</span></div><span class="pipe-arrow">▶</span>
-    <div class="pipe-step lit" onclick="this.classList.toggle('lit')"><span class="pipe-num">09</span><span class="pipe-icon">🔲</span><span class="pipe-name">Bitstream</span><span class="pipe-tool">Vivado</span></div><span class="pipe-arrow">▶</span>
-    <div class="pipe-step lit" onclick="this.classList.toggle('lit')"><span class="pipe-num">10</span><span class="pipe-icon">🖥️</span><span class="pipe-name">Zynq Verify</span><span class="pipe-tool">JTAG/UART</span></div><span class="pipe-arrow">▶</span>
-    <div class="pipe-step" onclick="this.classList.toggle('lit')"><span class="pipe-num">11</span><span class="pipe-icon">🔍</span><span class="pipe-name">DRC/LVS</span><span class="pipe-tool">Calibre</span></div><span class="pipe-arrow">▶</span>
-    <div class="pipe-step" onclick="this.classList.toggle('lit')"><span class="pipe-num">12</span><span class="pipe-icon">🏭</span><span class="pipe-name">GDSII/Tapeout</span><span class="pipe-tool">Foundry PDK</span></div>
-  </div>
+  <div class="pipeline-label">// full asic design flow — click stages to mark progress</div>
+  <div class="pipeline" id="pipeline"></div>
 </div>
 
 <div id="section-skills" class="section active">
-  <div class="sec-header"><h2 class="sec-title">Skills & Competencies</h2><span class="sec-sub">// grouped by asic design flow domain</span></div>
+  <div class="sec-header">
+    <h2 class="sec-title">Skills & Competencies</h2>
+    <span class="sec-sub">// drag the bar to update your level</span>
+  </div>
   <div class="skill-domains" id="skill-domains"></div>
 </div>
+
 <div id="section-projects" class="section">
-  <div class="sec-header"><h2 class="sec-title">Projects & Work Samples</h2><span class="sec-sub">// mobilenet asic implementation journey</span></div>
+  <div class="sec-header">
+    <h2 class="sec-title">Projects & Work Samples</h2>
+    <span class="sec-sub">// click status to cycle: planned → in progress → complete</span>
+  </div>
   <div class="proj-list" id="proj-list"></div>
 </div>
+
 <div id="section-goals" class="section">
-  <div class="sec-header"><h2 class="sec-title">Goals & Reflections</h2></div>
+  <div class="sec-header">
+    <h2 class="sec-title">Goals & Reflections</h2>
+    <span class="sec-sub">// check off goals · add new ones below</span>
+  </div>
   <div class="goals-wrap">
-    <div><div class="gcol-title">// active goals — click to complete</div><div id="goals-active"></div></div>
-    <div><div class="gcol-title">// completed</div><div id="goals-done"></div></div>
+    <div>
+      <div class="gcol-title">// active goals</div>
+      <div id="goals-active"></div>
+      <div class="add-goal-row">
+        <input class="add-goal-inp" id="new-goal-txt" placeholder="Add a new goal…" />
+        <input class="add-goal-date" id="new-goal-date" placeholder="Q3 2026" />
+        <button class="add-btn" onclick="addGoal()">+ add</button>
+      </div>
+    </div>
+    <div>
+      <div class="gcol-title">// completed</div>
+      <div id="goals-done"></div>
+    </div>
   </div>
   <div class="reflect-box">
     <div class="reflect-lbl">// learning reflection</div>
     <div class="reflect-txt" contenteditable="true">The hardest part of the HLS-to-RTL flow is not the syntax — it's learning to think in hardware. Timing closure on the Zynq board revealed how much the physical world pushes back against clean abstractions. Every LUT reduction forced me to re-read the architecture from first principles…</div>
   </div>
 </div>
+
 <div id="section-certs" class="section">
-  <div class="sec-header"><h2 class="sec-title">Certifications & Achievements</h2></div>
+  <div class="sec-header">
+    <h2 class="sec-title">Certifications & Achievements</h2>
+    <span class="sec-sub">// click a status pill to update it</span>
+  </div>
   <div class="certs-grid" id="certs-grid"></div>
 </div>
 
 <script>
-const domains=[
+/* ─── PIPELINE ─── */
+const pipeStages = [
+  {n:"01",ico:"🧠",name:"Algorithm",tool:"Python/TF",lit:true},
+  {n:"02",ico:"⚙️",name:"HLS",tool:"Vivado HLS",lit:true},
+  {n:"03",ico:"📐",name:"RTL Design",tool:"Verilog/SV",lit:true},
+  {n:"04",ico:"🔬",name:"Simulation",tool:"VCS/ModelSim",lit:true},
+  {n:"05",ico:"🧩",name:"Synthesis",tool:"DC / Vivado",lit:true},
+  {n:"06",ico:"⏱️",name:"STA",tool:"PrimeTime",lit:true},
+  {n:"07",ico:"🗺️",name:"P&R",tool:"Vivado/ICC2",lit:true},
+  {n:"08",ico:"💡",name:"Power Anal.",tool:"PrimeTime PX",lit:true},
+  {n:"09",ico:"🔲",name:"Bitstream",tool:"Vivado",lit:true},
+  {n:"10",ico:"🖥️",name:"Zynq Verify",tool:"JTAG/UART",lit:true},
+  {n:"11",ico:"🔍",name:"DRC/LVS",tool:"Calibre",lit:false},
+  {n:"12",ico:"🏭",name:"GDSII/Tapeout",tool:"Foundry PDK",lit:false},
+];
+const pipeline = document.getElementById('pipeline');
+pipeStages.forEach((s,i) => {
+  if(i>0){ const arr=document.createElement('span'); arr.className='pipe-arrow'; arr.textContent='▶'; pipeline.appendChild(arr); }
+  const el = document.createElement('div');
+  el.className = 'pipe-step' + (s.lit?' lit':'');
+  if(i===0) el.style.borderRadius='5px 0 0 5px';
+  if(i===pipeStages.length-1) el.style.borderRadius='0 5px 5px 0';
+  el.innerHTML = `<span class="pipe-num">${s.n}</span><span class="pipe-icon">${s.ico}</span><span class="pipe-name">${s.name}</span><span class="pipe-tool">${s.tool}</span>`;
+  el.addEventListener('click', () => el.classList.toggle('lit'));
+  pipeline.appendChild(el);
+});
+
+/* ─── SKILLS ─── */
+const domains = [
   {name:"Algorithm & ML Frameworks",color:"#7c3aed",skills:[{n:"Python for DNN Modeling",p:80},{n:"TensorFlow / Keras",p:72},{n:"MobileNet V1/V2 Architecture",p:78},{n:"Model Quantization (INT8/FP16)",p:60},{n:"Operator Profiling & Bottleneck ID",p:55}]},
   {name:"High-Level Synthesis (HLS)",color:"#0891b2",skills:[{n:"Vivado HLS / Vitis HLS",p:82},{n:"C++ for Hardware Modeling",p:75},{n:"PIPELINE & UNROLL Pragmas",p:74},{n:"Initiation Interval (II) Opt.",p:68},{n:"DATAFLOW Task-Level Pipelining",p:65},{n:"HLS Co-simulation",p:62}]},
   {name:"RTL Design",color:"#ea580c",skills:[{n:"Verilog / SystemVerilog",p:78},{n:"FSM & Datapath Design",p:72},{n:"AXI4 / AXI4-Lite Interfaces",p:65},{n:"BRAM & Memory Architecture",p:70},{n:"MAC / Conv Arithmetic Units",p:75},{n:"Clock Domain Crossing (CDC)",p:48}]},
@@ -189,7 +286,38 @@ const domains=[
   {name:"Place & Route / FPGA Impl.",color:"#0369a1",skills:[{n:"Vivado Implementation (P&R)",p:70},{n:"Floorplanning & Pblock",p:52},{n:"Bitstream Generation",p:76},{n:"Zynq PS–PL Integration",p:68},{n:"JTAG / ILA On-board Debug",p:65},{n:"Resource Utilization Analysis",p:68}]},
   {name:"Physical Design (Learning)",color:"#be185d",skills:[{n:"Standard Cell & Library Concepts",p:40},{n:"PDK / Liberty (.lib) Files",p:35},{n:"Floorplan & Power Planning",p:32},{n:"OpenLane RTL-to-GDSII Flow",p:38},{n:"DRC / LVS Concepts (Calibre)",p:33},{n:"GDSII / Tapeout Readout",p:25}]},
 ];
-const projects=[
+
+const sd = document.getElementById('skill-domains');
+domains.forEach(d => {
+  const block = document.createElement('div');
+  block.className = 'domain-block';
+  const skillsHtml = d.skills.map(s => `
+    <div class="sk">
+      <span class="sk-name">${s.n}</span>
+      <div class="sk-bar" title="Drag to update skill level">
+        <div class="sk-fill" id="fill-${s.n.replace(/\W/g,'')}" data-p="${s.p}" style="background:${d.color};opacity:.8"></div>
+        <input type="range" min="0" max="100" value="${s.p}"
+          oninput="updateSkill(this,'fill-${s.n.replace(/\W/g,'')}','pct-${s.n.replace(/\W/g,'')}')" />
+      </div>
+      <span class="sk-pct" id="pct-${s.n.replace(/\W/g,'')}">${s.p}%</span>
+    </div>`).join('');
+  block.innerHTML = `<div class="domain-header"><div class="d-dot" style="background:${d.color}"></div><span class="d-name">${d.name}</span></div><div class="domain-skills">${skillsHtml}</div>`;
+  sd.appendChild(block);
+});
+
+function updateSkill(input, fillId, pctId) {
+  const v = input.value;
+  const fill = document.getElementById(fillId);
+  const pct = document.getElementById(pctId);
+  if(fill) fill.style.width = v + '%';
+  if(pct) pct.textContent = v + '%';
+}
+
+/* ─── PROJECTS ─── */
+const statusCycle = {plan:'wip', wip:'done', done:'plan'};
+const statusLabel = {plan:'Planned', wip:'In Progress', done:'Complete'};
+
+const projects = [
   {num:"01",tags:[{l:"ML",t:"ml"},{l:"HLS",t:"hls"}],title:"MobileNet Depthwise Conv Accelerator — HLS",desc:"Implemented MobileNet depthwise separable convolution in C++ targeting Vivado HLS. Applied PIPELINE & UNROLL pragmas to achieve target II. Validated outputs against a Python/TensorFlow floating-point reference model.",tools:["Vivado HLS","C++","Python","TensorFlow"],status:"wip"},
   {num:"02",tags:[{l:"RTL",t:"rtl"},{l:"Verif.",t:"phys"}],title:"AXI4-Lite Control Interface & RTL Wrapper",desc:"Wrapped HLS-generated RTL with a handcrafted AXI4-Lite slave to allow the ARM Cortex-A9 (PS) to configure and trigger the accelerator. Wrote SystemVerilog testbenches verifying register R/W, burst transfer, and IRQ assertion.",tools:["SystemVerilog","Verilog","VCS","GTKWave","Vivado"],status:"wip"},
   {num:"03",tags:[{l:"FPGA",t:"fpga"},{l:"Zynq",t:"fpga"}],title:"Zynq-7000 Synthesis, P&R & Board Verification",desc:"Full implementation: synthesis → place & route → timing closure at 100 MHz → bitstream. Verified end-to-end MobileNet inference over UART, cross-checked against Python golden model. Used ILA to debug on-chip signal behavior.",tools:["Vivado","Zynq-7020","JTAG","ILA","Python"],status:"wip"},
@@ -197,7 +325,38 @@ const projects=[
   {num:"05",tags:[{l:"HLS",t:"hls"},{l:"Perf.",t:"fpga"}],title:"Dataflow Pipelining & Throughput Benchmarking",desc:"Explored DATAFLOW pragma for task-level pipelining across MobileNet conv stages. Benchmarked throughput (frames/sec) vs resource utilization (BRAM, DSP, LUT). Documented improvement vs sequential baseline.",tools:["Vivado HLS","C++","Python"],status:"done"},
   {num:"06",tags:[{l:"Physical",t:"phys"},{l:"OpenLane",t:"phys"}],title:"RTL-to-GDSII Study — OpenLane / SkyWater 130nm",desc:"Running a small arithmetic block through the full physical design flow using OpenLane and SkyWater 130nm PDK. Learning floorplanning, power rings, CTS, routing, DRC/LVS, and GDSII generation toward tapeout readiness.",tools:["OpenLane","SkyWater 130nm","Magic","KLayout","Python"],status:"plan"},
 ];
-const goals=[
+
+const pl = document.getElementById('proj-list');
+projects.forEach(p => {
+  const card = document.createElement('div');
+  card.className = 'proj-card';
+  const sdotId = 'sdot-' + p.num;
+  const sbtnId = 'sbtn-' + p.num;
+  card.innerHTML = `
+    <div class="proj-num">${p.num}</div>
+    <div>
+      <div class="proj-tags">${p.tags.map(t=>`<span class="ptag ${t.t}">${t.l}</span>`).join('')}</div>
+      <div class="proj-title">${p.title}</div>
+      <div class="proj-desc">${p.desc}</div>
+      <div class="proj-tools">${p.tools.map(t=>`<span class="tbadge">${t}</span>`).join('')}</div>
+    </div>
+    <div class="proj-status">
+      <span class="sdot ${p.status}" id="${sdotId}">${statusLabel[p.status]}</span>
+      <button class="status-btn" id="${sbtnId}" onclick="cycleStatus('${p.num}')">cycle status ↻</button>
+    </div>`;
+  pl.appendChild(card);
+});
+
+function cycleStatus(num) {
+  const sdot = document.getElementById('sdot-' + num);
+  const cur = sdot.className.replace('sdot ','').trim();
+  const next = statusCycle[cur];
+  sdot.className = 'sdot ' + next;
+  sdot.textContent = statusLabel[next];
+}
+
+/* ─── GOALS ─── */
+const goals = [
   {t:"Achieve timing closure on Zynq at 100 MHz for full MobileNet block",d:"Q2 2026",done:false},
   {t:"Complete RTL-to-GDSII flow with OpenLane on a custom block",d:"Q3 2026",done:false},
   {t:"Implement quantization-aware training & deploy INT8 model on FPGA",d:"Q3 2026",done:false},
@@ -209,46 +368,80 @@ const goals=[
   {t:"First successful HLS synthesis of Conv2D block",d:"Feb 2026",done:true},
   {t:"RTL simulation passing all basic testcases",d:"Feb 2026",done:true},
 ];
-const certs=[
-  {ico:"⚙️",n:"Vitis HLS Optimization Techniques",i:"Xilinx / AMD Learning",d:"In Progress"},
-  {ico:"🔲",n:"FPGA Design for Embedded Systems",i:"Coursera – CU Boulder",d:"Planned"},
-  {ico:"📐",n:"SystemVerilog for Design & Verification",i:"Doulos / Udemy",d:"Planned"},
-  {ico:"🏭",n:"Digital VLSI Design (RTL to GDSII)",i:"NPTEL / IIT",d:"Planned"},
-  {ico:"🧠",n:"Deep Learning Specialization",i:"DeepLearning.AI / Coursera",d:"Completed 2025"},
-  {ico:"🖥️",n:"Computer Architecture (CS 6290)",i:"Georgia Tech / edX",d:"In Progress"},
+
+const ga = document.getElementById('goals-active');
+const gd = document.getElementById('goals-done');
+
+function makeGoalEl(g) {
+  const el = document.createElement('div');
+  el.className = 'goal-row' + (g.done ? ' done-g' : '');
+  el.innerHTML = `<div class="g-box"></div><div style="flex:1"><div class="g-txt">${g.t}</div><div class="g-dt">${g.d}</div></div><button class="g-del" title="Remove">✕</button>`;
+  el.querySelector('.g-box').addEventListener('click', () => el.classList.toggle('done-g'));
+  el.querySelector('.g-del').addEventListener('click', (e) => { e.stopPropagation(); el.remove(); });
+  return el;
+}
+
+goals.forEach(g => (g.done ? gd : ga).appendChild(makeGoalEl(g)));
+
+function addGoal() {
+  const txt = document.getElementById('new-goal-txt').value.trim();
+  const dt = document.getElementById('new-goal-date').value.trim() || 'TBD';
+  if (!txt) return;
+  ga.appendChild(makeGoalEl({t: txt, d: dt, done: false}));
+  document.getElementById('new-goal-txt').value = '';
+  document.getElementById('new-goal-date').value = '';
+}
+document.getElementById('new-goal-txt').addEventListener('keydown', e => { if(e.key==='Enter') addGoal(); });
+
+/* ─── CERTS ─── */
+const certs = [
+  {ico:"⚙️",n:"Vitis HLS Optimization Techniques",i:"Xilinx / AMD Learning",status:"progress"},
+  {ico:"🔲",n:"FPGA Design for Embedded Systems",i:"Coursera – CU Boulder",status:"planned"},
+  {ico:"📐",n:"SystemVerilog for Design & Verification",i:"Doulos / Udemy",status:"planned"},
+  {ico:"🏭",n:"Digital VLSI Design (RTL to GDSII)",i:"NPTEL / IIT",status:"planned"},
+  {ico:"🧠",n:"Deep Learning Specialization",i:"DeepLearning.AI / Coursera",status:"completed"},
+  {ico:"🖥️",n:"Computer Architecture (CS 6290)",i:"Georgia Tech / edX",status:"progress"},
 ];
 
-const sd=document.getElementById('skill-domains');
-domains.forEach(d=>{
-  sd.innerHTML+=`<div class="domain-block"><div class="domain-header"><div class="d-dot" style="background:${d.color}"></div><span class="d-name">${d.name}</span></div><div class="domain-skills">${d.skills.map(s=>`<div class="sk"><span class="sk-name">${s.n}</span><div class="sk-bar"><div class="sk-fill" data-p="${s.p}" style="background:${d.color};opacity:.8"></div></div><span class="sk-pct">${s.p}%</span></div>`).join('')}</div></div>`;
+const statusOptions = ['planned','progress','completed'];
+const statusMeta = {
+  planned: {label:'Planned', cls:'active-planned'},
+  progress: {label:'In Progress', cls:'active-progress'},
+  completed: {label:'Completed', cls:'active-completed'},
+};
+
+const cg = document.getElementById('certs-grid');
+certs.forEach((c, ci) => {
+  const card = document.createElement('div');
+  card.className = 'cert-card';
+  const pillsHtml = statusOptions.map(s =>
+    `<button class="cst-btn ${c.status===s ? statusMeta[s].cls : ''}" data-cert="${ci}" data-status="${s}" onclick="setCertStatus(${ci},'${s}')">${statusMeta[s].label}</button>`
+  ).join('');
+  card.id = 'cert-' + ci;
+  card.innerHTML = `<div class="cert-ico">${c.ico}</div><div><div class="cert-name">${c.n}</div><div class="cert-issuer">${c.i}</div><div class="cert-status-row">${pillsHtml}</div></div>`;
+  cg.appendChild(card);
 });
 
-const pl=document.getElementById('proj-list');
-projects.forEach(p=>{
-  pl.innerHTML+=`<div class="proj-card"><div class="proj-num">${p.num}</div><div><div class="proj-tags">${p.tags.map(t=>`<span class="ptag ${t.t}">${t.l}</span>`).join('')}</div><div class="proj-title">${p.title}</div><div class="proj-desc">${p.desc}</div><div class="proj-tools">${p.tools.map(t=>`<span class="tbadge">${t}</span>`).join('')}</div></div><div class="proj-status"><span class="sdot ${p.status}">${p.status==='wip'?'In Progress':p.status==='done'?'Complete':'Planned'}</span></div></div>`;
-});
-
-const ga=document.getElementById('goals-active'),gd=document.getElementById('goals-done');
-goals.forEach(g=>{
-  const el=document.createElement('div');
-  el.className='goal-row'+(g.done?' done-g':'');
-  el.innerHTML=`<div class="g-box"></div><div><div class="g-txt">${g.t}</div><div class="g-dt">${g.d}</div></div>`;
-  el.addEventListener('click',()=>el.classList.toggle('done-g'));
-  (g.done?gd:ga).appendChild(el);
-});
-
-const cg=document.getElementById('certs-grid');
-certs.forEach(c=>{cg.innerHTML+=`<div class="cert-card"><div class="cert-ico">${c.ico}</div><div><div class="cert-name">${c.n}</div><div class="cert-issuer">${c.i}</div><div class="cert-date">${c.d}</div></div></div>`;});
-
-function showSec(id,btn){
-  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
-  document.querySelectorAll('.nav-tab').forEach(t=>t.classList.remove('active'));
-  document.getElementById('section-'+id).classList.add('active');
-  btn.classList.add('active');
-  if(id==='skills')setTimeout(animateBars,80);
+function setCertStatus(ci, status) {
+  const card = document.getElementById('cert-' + ci);
+  card.querySelectorAll('.cst-btn').forEach(btn => {
+    const s = btn.dataset.status;
+    btn.className = 'cst-btn' + (s === status ? ' ' + statusMeta[s].cls : '');
+  });
 }
-function animateBars(){document.querySelectorAll('.sk-fill').forEach(b=>{b.style.width=b.dataset.p+'%'});}
-window.addEventListener('load',()=>setTimeout(animateBars,350));
+
+/* ─── NAV & BARS ─── */
+function showSec(id, btn) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('section-' + id).classList.add('active');
+  btn.classList.add('active');
+  if (id === 'skills') setTimeout(animateBars, 80);
+}
+function animateBars() {
+  document.querySelectorAll('.sk-fill').forEach(b => { b.style.width = b.dataset.p + '%'; });
+}
+window.addEventListener('load', () => setTimeout(animateBars, 350));
 </script>
 </body>
 </html>
